@@ -1,7 +1,7 @@
 import * as request from 'request';
 import {User} from './User';
 export class GithubApiService{
-    getUserInfo( userName:string){
+    getUserInfo( userName:string,cb:(user:User)=>any){
         let options:any={
             headers:{
                 'User-Agent':'request'
@@ -10,7 +10,8 @@ export class GithubApiService{
         }
      request.get('https://api.github.com/users/'+userName, options,( error:any, response:any, body:any)=>{
          let user = new User(body);
-         console.log(user);
+         cb(user);
+         //console.log(user);
          //console.log(body);
      });
     }

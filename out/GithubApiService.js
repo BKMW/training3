@@ -12,16 +12,17 @@ var User_1 = require("./User");
 var GithubApiService = /** @class */ (function () {
     function GithubApiService() {
     }
-    GithubApiService.prototype.getUserInfo = function (userName) {
+    GithubApiService.prototype.getUserInfo = function (userName, cb) {
         var options = {
             headers: {
                 'User-Agent': 'request'
             },
             json: true
         };
-        request.get('https://api.github.com/users/' + userName, options, function (error, response, x) {
-            var user = new User_1.User(x);
-            console.log(user);
+        request.get('https://api.github.com/users/' + userName, options, function (error, response, body) {
+            var user = new User_1.User(body);
+            cb(user);
+            //console.log(user);
             //console.log(body);
         });
     };
