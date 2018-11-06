@@ -4,4 +4,11 @@ export class Repo{
     url:string="";
     size:number=0;
     forkCount:number=0;
+    constructor( repo:any){
+      this.name=repo.name;
+      this.description=repo.description;
+      this.url=repo.html_url;
+      this.size=repo.html_size;
+      this.forkCount=repo.forks;
+    }
 }
